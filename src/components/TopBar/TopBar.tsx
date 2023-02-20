@@ -1,14 +1,19 @@
 import {
   AppBar,
   Box,
+  Button,
   Container,
   IconButton,
   Menu,
+  MenuItem,
   Toolbar,
   Typography,
 } from "@mui/material";
 import Image from "next/image";
 import { useState } from "react";
+import { IoMdMenu } from "react-icons/io";
+
+const PAGES = [{ title: "Om Fågla", link: "/about" }];
 
 export const TopBar = () => {
   const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
@@ -34,12 +39,12 @@ export const TopBar = () => {
       position="static"
       sx={{
         background:
-          "linear-gradient(90deg, rgba(202,230,202,1) 32%, rgba(245,245,245,1) 100%)",
+          "linear-gradient(90deg, rgba(202,230,202,1) 32%, rgba(245,245,245,0) 100%)",
+        boxShadow: 0,
       }}
     >
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          {/* <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} /> */}
           <Typography
             variant="h6"
             noWrap
@@ -72,8 +77,7 @@ export const TopBar = () => {
               onClick={handleOpenNavMenu}
               color="inherit"
             >
-              {/* <MenuIcon /> */}
-              TEST
+              <IoMdMenu />
             </IconButton>
             <Menu
               id="menu-appbar"
@@ -93,11 +97,11 @@ export const TopBar = () => {
                 display: { xs: "block", md: "none" },
               }}
             >
-              {/* {pages.map((page) => (
-              <MenuItem key={page} onClick={handleCloseNavMenu}>
-                <Typography textAlign="center">{page}</Typography>
-              </MenuItem>
-            ))} */}
+              {PAGES.map((page) => (
+                <MenuItem key={page.title} onClick={handleCloseNavMenu}>
+                  <Typography textAlign="center">{page.title}</Typography>
+                </MenuItem>
+              ))}
             </Menu>
           </Box>
           {/* <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} /> */}
@@ -125,15 +129,15 @@ export const TopBar = () => {
             />
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-            {/* {pages.map((page) => (
-            <Button
-              key={page}
-              onClick={handleCloseNavMenu}
-              sx={{ my: 2, color: 'white', display: 'block' }}
-            >
-              {page}
-            </Button>
-          ))} */}
+            {PAGES.map((page) => (
+              <Button
+                key={page.title}
+                onClick={handleCloseNavMenu}
+                sx={{ my: 2, color: "black", display: "block" }}
+              >
+                {page.title}
+              </Button>
+            ))}
           </Box>
 
           <Box sx={{ flexGrow: 0 }}>
